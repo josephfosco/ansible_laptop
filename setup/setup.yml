@@ -130,6 +130,9 @@
 
 # NOTES
 #
+# Must add an environment variable in .bash_profile to use ansible_hosts file
+#  export ANSIBLE_CONFIG="~/sys/ansible/setup/ansible.cfg"
+#
 # To get ansible working on Fedora with python2 you must
 #   sudo dnf install python2-dnf
 #
