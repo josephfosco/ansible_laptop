@@ -73,19 +73,52 @@
         disable_gpg_check: yes
         state: present
 
-    - name: install firefox developer edition
-      shell: "{{ item }}"
-      with_items:
-        - ./firefox_developer_edition.sh
-      args:
-        creates: /opt/firefox-developer/firefox/firefox
+    # COMMENTED OUT TILL IT WILL NOT INSTALL EVERY TIME
+    # - name: install firefox developer edition
+    #   shell: "{{ item }}"
+    #   with_items:
+    #     - ./firefox_developer_edition.sh
+    #   args:
+    #     creates: /opt/firefox-developer/firefox/firefox
 
     - name: install applications
       become: yes
       action: >
         {{ ansible_pkg_mgr }} name={{ item }} state=present
       with_items:
-        - keepass
+        - keepassxc
+
+    - name: install mariadb
+      become: yes
+      action: >
+        {{ ansible_pkg_mgr }} name={{ item }} state=present
+      with_items:
+        - mariadb
+        - mariadb-server
+
+    # Raspberry Pi software
+    - name: add etcher rpm repo for etcher
+      become: yes
+      command: wget https://bintray.com/resin-io/redhat/rpm -O /etc/yum.repos.d/bintray-resin-io-redhat.repo
+      args:
+        creates: /etc/yum.repos.d/bintray-resin-io-redhat.repo
+    # - name: add etcher rpm repo for etcher
+    #   become: yes
+    #   yum_repository:
+    #     name: bintray-resin-io-redhat
+    #     description: etcher yum repo
+    #     baseurl: https://bintray.com/resin-io/redhat/rpm
+    #     state: present
+
+    - name: install etcher to burn RaspberryPi OS
+      become: yes
+      dnf:
+        name: etcher-electron
+        state: latest
+
+    - name: Install arduino
+      dnf: name=arduino state=present
+      become: yes
 
     # - name: install npm
     #   become: yes
