@@ -23,6 +23,8 @@
         {{ ansible_pkg_mgr }} name={{ item }} state=present
       with_items:
         - i3
+        - pavucontrol      # pulse audio sound control
+        - sway
         - tmux
         - patch
         - libyaml-devel    # for compiling ruby versions
@@ -39,6 +41,10 @@
     #     - postgresql-devel
     #   notify:
     #     - init postgres
+
+    - name: Install supercollider
+      dnf: name=supercollider state=present
+      become: yes
 
     - name: Install emacs
       dnf: name=emacs state=present
@@ -95,6 +101,21 @@
       with_items:
         - mariadb
         - mariadb-server
+
+    - name: install php
+      become: yes
+      action: >
+        {{ ansible_pkg_mgr }} name={{ item }} state=present
+      with_items:
+        - php
+        - php-common
+        - php-mysqlnd
+        - php-gd
+        - php-imap
+        - php-xml
+        - php-cli
+        - php-opcache
+        - php-mbstring
 
     # Raspberry Pi software
     - name: add etcher rpm repo for etcher
