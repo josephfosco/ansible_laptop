@@ -30,6 +30,7 @@
         - libyaml-devel    # for compiling ruby versions
         - gdbm-devel       # for compiling ruby versions
         - htop
+        - zeal             # for offline programming doc viewing
 
     # - name: install postgres
     #   become: yes
@@ -93,6 +94,27 @@
         {{ ansible_pkg_mgr }} name={{ item }} state=present
       with_items:
         - keepassxc
+        - mediawriter   # to create botable fedora usb drive
+
+    # - name: install rpmfusion repo for ffmpeg
+    #   become: yes
+    #   dnf:
+    #     name: 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm'
+    #     disable_gpg_check: yes
+    #     state: present
+
+    # install ffdmpeg to play video on twitter
+    # must first install the rpmfusion-free repo using
+    # sudo dnf install https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm
+    # or whatever command is suggested at https://rpmfusion.org/Configuration
+    # I attemptesd to do this automatically using the above commented out step "install rpmfusion repo for ffmpeg"
+    # but was unable to make this work
+    - name: install ffmpeg
+      become: yes
+      dnf:
+        name: ffmpeg
+        enablerepo: rpmfusion
+        state: present
 
     - name: install mariadb
       become: yes
@@ -139,6 +161,11 @@
 
     - name: Install arduino
       dnf: name=arduino state=present
+      become: yes
+
+    # install screen for use with adafruit Circuit Python
+    - name: Install screen
+      dnf: name=screen state=present
       become: yes
 
     # - name: install npm
