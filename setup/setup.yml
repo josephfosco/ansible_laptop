@@ -32,6 +32,13 @@
         - htop
         - zeal             # for offline programming doc viewing
 
+    - name: install utilities
+      become: yes
+      action: >
+        {{ ansible_pkg_mgr }} name={{ item }} state=present
+      with_items:
+        - gparted
+
     # - name: install postgres
     #   become: yes
     #   action: >
