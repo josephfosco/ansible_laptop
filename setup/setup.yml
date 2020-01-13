@@ -201,6 +201,18 @@
       dnf: name=screen state=present
       become: yes
 
+    - name: install rbenv
+      shell: |
+        loop:
+          git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+      args:
+        chdir: $HOME
+        creates: ~/.rbenv
+      notify:
+        setup rbenv
+      tags:
+        - ruby
+
     # - name: install npm
     #   become: yes
     #   action: >
@@ -217,8 +229,25 @@
     #     creates: ~/.nodenv
     #   notify: setup nodenv
 
-  # handlers:
-    # # not really tested
+  handlers:
+    # sets up bash profile for rbenv and installs ruby-build
+    - name: setup rbenv
+      shell: |
+        loop:
+          echo '' >> ~/.bash_profile
+          echo '# rbenv shims' >> ~/.bash_profile
+          echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+          export PATH="$HOME/.rbenv/bin:$PATH"
+          ~/.rbenv/bin/rbenv init
+          echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+          mkdir -p "$(rbenv root)"/plugins
+          git clone https://github.com/rbenv/ruby-build.git "$(rbenv root)"/plugins/ruby-build
+      args:
+        chdir: $HOME
+      tags:
+        - ruby
+
+  # # not really tested
     # - name: init postgres
     #   become: yes
     #   shell: "{{ item }}"
