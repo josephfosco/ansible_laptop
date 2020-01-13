@@ -8,7 +8,7 @@
       become: yes
       action: >
         {{ ansible_pkg_mgr }} name={{ item }} state=present
-      with_items:
+      loop:
         - zlib-devel
         - bzip2
         - bzip2-devel
@@ -16,12 +16,13 @@
         - sqlite
         - sqlite-devel
         - openssl-devel
+        - libffi-devel
 
     - name: install basic packages
       become: yes
       action: >
         {{ ansible_pkg_mgr }} name={{ item }} state=present
-      with_items:
+      loop:
         - i3
         - pavucontrol      # pulse audio sound control
         - sway
@@ -36,7 +37,7 @@
       become: yes
       action: >
         {{ ansible_pkg_mgr }} name={{ item }} state=present
-      with_items:
+      loop:
         - gparted
 
     # - name: install postgres
@@ -77,7 +78,7 @@
       become: yes
       action: >
         {{ ansible_pkg_mgr }} name={{ item }} state=present
-      with_items:
+      loop:
         - xsel
 
     - name: install chrome
@@ -99,7 +100,7 @@
       become: yes
       action: >
         {{ ansible_pkg_mgr }} name={{ item }} state=present
-      with_items:
+      loop:
         - keepassxc
         - mediawriter   # to create botable fedora usb drive
 
@@ -127,15 +128,17 @@
       become: yes
       action: >
         {{ ansible_pkg_mgr }} name={{ item }} state=present
-      with_items:
+      loop:
         - mariadb
         - mariadb-server
+      tags:
+        - wordpress
 
     - name: install php
       become: yes
       action: >
         {{ ansible_pkg_mgr }} name={{ item }} state=present
-      with_items:
+      loop:
         - php
         - php-common
         - php-mysqlnd
@@ -145,26 +148,49 @@
         - php-cli
         - php-opcache
         - php-mbstring
+      tags:
+        - wordpress
+
+    - name: Install phpmyadmin
+      dnf:
+        name=phpmyadmin
+        state=present
+      become: yes
+      tags:
+        - wordpress
 
     # Raspberry Pi software
-    - name: add etcher rpm repo for etcher
-      become: yes
-      command: wget https://bintray.com/resin-io/redhat/rpm -O /etc/yum.repos.d/bintray-resin-io-redhat.repo
-      args:
-        creates: /etc/yum.repos.d/bintray-resin-io-redhat.repo
+
+    ### OLD ETCHER REPO AND PROGRAM ###
     # - name: add etcher rpm repo for etcher
     #   become: yes
-    #   yum_repository:
-    #     name: bintray-resin-io-redhat
-    #     description: etcher yum repo
-    #     baseurl: https://bintray.com/resin-io/redhat/rpm
-    #     state: present
+    #   command: wget https://bintray.com/resin-io/redhat/rpm -O /etc/yum.repos.d/bintray-resin-io-redhat.repo
+    #   args:
+    #     creates: /etc/yum.repos.d/bintray-resin-io-redhat.repo
+    # - name: install etcher to burn RaspberryPi OS
+    #   become: yes
+    #   dnf:
+    #     name: etcher-electron
+    #     state: latest
+    #   tags:
+    #     raspberrypi
+
+
+    - name: add etcher repo
+      become: yes
+      get_url:
+        url: https://balena.io/etcher/static/etcher-rpm.repo
+        dest: /etc/yum.repos.d/etcher-rpm.repo
+      tags:
+        raspberrypi
 
     - name: install etcher to burn RaspberryPi OS
       become: yes
       dnf:
-        name: etcher-electron
+        name: balena-etcher-electron
         state: latest
+      tags:
+        raspberrypi
 
     - name: Install arduino
       dnf: name=arduino state=present
