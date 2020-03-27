@@ -1,0 +1,1 @@
+Add apache to the joseph group - for allowing access to wordpress wp-config.php
