@@ -39,6 +39,9 @@
         {{ ansible_pkg_mgr }} name={{ item }} state=present
       loop:
         - gparted
+        - strace
+      tags:
+        - utilities
 
     # - name: install postgres
     #   become: yes
@@ -54,6 +57,16 @@
     - name: Install supercollider
       dnf: name=supercollider state=present
       become: yes
+      tags:
+        - supercollider
+
+    - name: Install pipeaudio-jack
+      dnf:
+        name=pipewire-plugin-jack
+        state=present
+      become: yes
+      tags:
+        - supercollider
 
     - name: Install emacs
       dnf: name=emacs state=present
