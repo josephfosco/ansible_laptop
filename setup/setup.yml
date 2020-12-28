@@ -68,15 +68,25 @@
       tags:
         - supercollider
 
+    - name: Install jackdbus
+      dnf:
+        name=jack-audio-connection-kit-dbus
+        state=present
+      become: yes
+      tags:
+        - supercollider
+
     - name: Install emacs
       dnf: name=emacs state=present
       become: yes
+      tags:
+        - emacs
 
     - name: install emacs Live packs
       shell: "{{ item }}"
       with_items:
         - rmdir .emacs.d
-        - git clone https://github.com/overtone/emacs-live.git .emacs.d
+        - git clone https://github.com/josephfosco/emacs-live.git .emacs.d
         - make -C .emacs.d/packs/stable/org-pack/lib/org-mode autoloads
         # - mkdir --parents .live-packs/{{ ansible_user_id }}-pack
         # - cp -R .emacs.d/packs/template/user-template-pack .live-packs/{{ ansible_user_id }}-pack
