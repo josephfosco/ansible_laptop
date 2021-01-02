@@ -1,3 +1,34 @@
+Starting new
+
+- Create ~/sys/commands subdirectory to place commands
+
+
+create ssh key using ssh-keygen
+Add ssh key to github
+
+
+- create ~/sys/ansible
+- clone ansible into ~/sys/ansible
+- clone personal laptop setup into ~/sys/ansible/setip
+- sudo dnf groupinstall 'C Development Tools and Libraries'
+- install pyenv using pyenv installer -  https://github.com/pyenv/pyenv-installer
+- create python-version file in ~/sys/ansible (currently 3.6.1)
+- install manual depenedencies for pyenv and ansible listed in ~/sys/ansible/setup/setup.yml at top of file
+- pyenv install <above pytonn version>
+- create ansible virtual env. (in ~/sys/ansible python -m venv ./env)
+- follow instructions in ansible installation instructions to get ansible running from source
+- install ansible python requirements from ~/sys/ansible/ansible ../env/bin/pip install -r requirements.txt
+
+
 Add apache to the joseph group - for allowing access to wordpress wp-config.php
 
-Comment out popwin package in emacs-live (conflicts with neotree makes - dir always show on right)
+Firefox add-ons
+---------------------
+u-block origin
+privacy badger
+remove cookies
+FireShot
+CanvasBlocker
+Decentraleyes
+Smart Referer
+Https Everywhere
