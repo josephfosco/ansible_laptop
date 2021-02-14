@@ -1,0 +1,110 @@
+---
+- name: install pyenv packages
+  # these should have been installed manually when installing pyenv
+  # but just in case...
+  become: yes
+  dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - zlib-devel
+    - bzip2
+    - bzip2-devel
+    - readline-devel
+    - sqlite
+    - sqlite-devel
+    - openssl-devel
+    - libffi-devel
+
+- name: install basic packages
+  become: yes
+  dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - i3
+    - pavucontrol      # pulse audio sound control
+    - sway
+    - tmux
+    - patch
+    - libyaml-devel    # for compiling ruby versions
+    - gdbm-devel       # for compiling ruby versions
+    - htop
+    - zeal             # for offline programming doc viewing
+
+- name: install utilities
+  become: yes
+  dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - gparted
+    - strace
+  tags:
+    - utilities
+
+- name: Fedora upgrade
+  dnf:
+    name: dnf-plugin-system-upgrade
+    state: present
+  become: yes
+  tags:
+    - fedora-upgrade
+
+- name: install xsel
+  # to allow cut/paste in emacs from system clipboard
+  become: yes
+  dnf:
+    name: xsel
+    state: present
+
+- name: install chrome
+  become: yes
+  dnf:
+    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    disable_gpg_check: yes
+    state: present
+
+- name: install applications
+  become: yes
+  dnf:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - keepassxc
+    - mediawriter   # to create botable fedora usb drive
+    - vsftpd
+  tags:
+    - apps
+
+- name: install rpmfusion repo for ffmpega
+  become: yes
+  dnf:
+    name: 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ hostvars[inventpry_hotname].ansible_distribution_major_version }}.noarch.rpm'
+    disable_gpg_check: yes
+    state: present
+  tags:
+    -ffmpeg
+
+# install ffdmpeg to play video on twitter
+- name: install ffmpeg
+  become: yes
+  dnf:
+    name: ffmpeg
+    enablerepo: rpmfusion
+    state: present
+  tags:
+    -ffmpeg
+
+
+
+# NOTES
+#
+# Must add an environment variable in .bash_profile to use ansible_hosts file
+#  export ANSIBLE_CONFIG="~/sys/ansible/setup/ansible.cfg"
+#
+# Generate and add your ssh key to github before running
+#
+# For Chrome
+# need to figure out how to not download .rpm every time
+#

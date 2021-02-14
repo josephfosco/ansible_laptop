@@ -1,0 +1,170 @@
+---
+- name: install pyenv packages
+  # these should have been installed manually when installing pyenv
+  # but just in case...
+  become: yes
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  loop:
+    - zlib-devel
+    - bzip2
+    - bzip2-devel
+    - readline-devel
+    - sqlite
+    - sqlite-devel
+    - openssl-devel
+    - libffi-devel
+
+- name: install basic packages
+  become: yes
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  loop:
+    - i3
+    - pavucontrol      # pulse audio sound control
+    - sway
+    - tmux
+    - patch
+    - libyaml-devel    # for compiling ruby versions
+    - gdbm-devel       # for compiling ruby versions
+    - htop
+    - zeal             # for offline programming doc viewing
+
+- name: install utilities
+  become: yes
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  loop:
+    - gparted
+    - strace
+  tags:
+    - utilities
+
+- name: Fedora upgrade
+  dnf:
+    name=dnf-plugin-system-upgrade
+    state=present
+  become: yes
+  tags:
+    - fedora-upgrade
+
+- name: install xsel
+  # to allow cut/paste in emacs from system clipboard
+  become: yes
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  loop:
+    - xsel
+
+- name: install chrome
+  become: yes
+  dnf:
+    name: https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+    disable_gpg_check: yes
+    state: present
+
+- name: install applications
+  become: yes
+  action: >
+    {{ ansible_pkg_mgr }} name={{ item }} state=present
+  loop:
+    - keepassxc
+    - mediawriter   # to create botable fedora usb drive
+    - vsftpd
+  tags:
+    - apps
+
+- name: install rpmfusion repo for ffmpega
+  become: yes
+  dnf:
+    name: 'https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ hostvars[inventpry_hotname].ansible_distribution_major_version }}.noarch.rpm'
+    disable_gpg_check: yes
+    state: present
+  tags:
+    -ffmpeg
+
+# install ffdmpeg to play video on twitter
+- name: install ffmpeg
+  become: yes
+  dnf:
+    name: ffmpeg
+    enablerepo: rpmfusion
+    state: present
+  tags:
+    -ffmpeg
+
+# - name: install postgres
+#   become: yes
+#   action: >
+#     {{ ansible_pkg_mgr }} name={{ item }} state=present
+#   with_items:
+#     - postgresql-server
+#     - postgresql-contrib
+#     - postgresql-devel
+#   notify:
+#     - init postgres
+
+# - name: install npm
+#   become: yes
+#   action: >
+#     {{ ansible_pkg_mgr }} name={{ item }} state=present
+#   with_items:
+#     - npm
+
+# - name: install nodenv
+#   shell: "{{ item }}"
+#   with_items:
+#     - git clone https://github.com/nodenv/nodenv.git ~/.nodenv
+#   args:
+#     chdir: $HOME
+#     creates: ~/.nodenv
+#   notify: setup nodenv
+
+# - handlers:
+
+  # # not really tested
+    # - name: init postgres
+    #   become: yes
+    #   shell: "{{ item }}"
+    #   with_items:
+    #     - postgresql-setup --initdb --unit postgresql
+    #     - systemctl enable postgresql
+    #   # still need to create your user and create default db
+
+    # - name: setup nodenv
+    #   shell: "{{ item }}"
+    #   with_items:
+    #     - cd ~/.nodenv && src/configure && make -C src
+    #     - echo 'export PATH="$HOME/.nodenv/bin:$PATH"' >> ~/.bash_profile
+    #     - eval "$(nodenv init -)"
+    #     - git clone https://github.com/nodenv/node-build.git ~/.nodenv/plugins/node-build
+    #   args:
+    #     chdir: $HOME
+
+# TO BE ADDED TO THIS
+#  - install for rbenv
+#  - install for ruby-build
+
+
+# NOTES
+#
+# Must add an environment variable in .bash_profile to use ansible_hosts file
+#  export ANSIBLE_CONFIG="~/sys/ansible/setup/ansible.cfg"
+#
+# To get ansible working on Fedora with python2 you must
+#   sudo dnf install python2-dnf
+#
+# Generate and add your ssh key to github before running
+#
+# For Postgres
+# add your userid with superuser privilidges
+# in /var/lib/pgsql/data/pg_hba.conf (or wherever pg_hba.conf is)
+# change all entries that are "ident" under METHOD to "trust"
+#
+# For Chrome
+# need to figure out how to not download .rpm every time
+#
+# For Firefox Developer Edition
+# need to add Alias in .bashrc/.bash_profile to distinguish from system firefox
+# alias firefoxd='nohup /opt/firefox-developer/firefox/firefox &>/dev/null &'
+#

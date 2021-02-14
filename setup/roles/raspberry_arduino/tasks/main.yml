@@ -1,0 +1,34 @@
+# Raspberry Pi software
+
+- name: add etcher repo
+  become: yes
+  get_url:
+    url: https://balena.io/etcher/static/etcher-rpm.repo
+    dest: /etc/yum.repos.d/etcher-rpm.repo
+  tags:
+    raspberrypi
+
+- name: install etcher to burn RaspberryPi OS
+  become: yes
+  dnf:
+    name: balena-etcher-electron
+    state: latest
+  tags:
+    raspberrypi
+
+- name: Install arduino
+  dnf:
+    name: arduino
+    state: present
+  become: yes
+  tags:
+    arduino
+
+# install screen for use with adafruit Circuit Python
+- name: Install screen
+  become: yes
+  dnf:
+    name: screen
+    state: present
+  tags:
+    raspberrypi

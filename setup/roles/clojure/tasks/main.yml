@@ -1,0 +1,31 @@
+- name: install rlwrap for clojure
+  become: yes
+  dnf:
+    name: rlwrap
+    state: present
+  tags:
+    - clojure
+
+# Downloads clojure with cli tools, and the next task installs
+- name: download clojure cli tools install
+  become: yes
+  get_url:
+    url: https://download.clojure.org/install/linux-install-1.10.1.763.sh
+    dest: /tmp/linux-install-1.10.1.763.sh
+    mode: 0755
+  tags:
+    - clojure
+
+- name: execute clojure cli install
+  become: yes
+  shell: /tmp/linux-install-1.10.1.763.sh
+  tags:
+    - clojure
+
+- name: remove clojure cli installer
+  become: yes
+  file: path=/tmp/zsh-installer.sh
+  args:
+    state: absent
+  tags:
+    - clojure

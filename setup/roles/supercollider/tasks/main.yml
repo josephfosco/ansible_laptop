@@ -1,0 +1,32 @@
+- name: Install supercollider repo
+  dnf:
+    name: 'http://ccrma.stanford.edu/planetccrma/mirror/fedora/linux/planetccrma/"$(rpm -E %fedora)"/x86_64/planetccrma-repo-1.1-3.fc"$(rpm -E %fedora).ccrma.noarch.rpm'
+    state: present
+  become: yes
+  tags:
+    - supercollider
+
+- name: Install supercollider
+  dnf:
+    name: supercollider
+    state: present
+  become: yes
+  tags:
+    - supercollider
+
+# - name: Install pipeaudio-jack
+#   # (I think this is currently included with Fedora or might not be needed)
+#   dnf:
+#     name: pipewire-plugin-jack
+#     state: present
+#   become: yes
+#   tags:
+#     - supercollider
+
+# - name: Install jackdbus
+#   dnf:
+#     name: jack-audio-connection-kit-dbus
+#     state: present
+#   become: yes
+#   tags:
+#     - supercollider

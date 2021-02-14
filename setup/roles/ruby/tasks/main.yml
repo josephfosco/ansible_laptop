@@ -1,0 +1,11 @@
+- name: install rbenv
+  shell: |
+    loop:
+      git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+  args:
+    chdir: $HOME
+    creates: ~/.rbenv
+  notify:
+    setup rbenv
+  tags:
+    - ruby

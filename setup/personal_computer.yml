@@ -1,0 +1,11 @@
+---
+- hosts: personal_computer
+  connection: local
+  roles:
+    - general
+    - clojure
+    - emacs
+    - raspberry_arduino
+    - ruby
+    - supercollider
+    - wordpress

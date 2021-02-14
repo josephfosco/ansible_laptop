@@ -1,0 +1,22 @@
+- name: Install emacs
+  dnf:
+    name: emacs
+    state: present
+  become: yes
+  tags:
+    - emacs
+
+- name: install emacs Live packs
+  shell: "{{ item }}"
+  with_items:
+    - rmdir .emacs.d
+    - git clone https://github.com/josephfosco/emacs-live.git .emacs.d
+    - make -C .emacs.d/packs/stable/org-pack/lib/org-mode autoloads
+    # - mkdir --parents .live-packs/{{ ansible_user_id }}-pack
+    # - cp -R .emacs.d/packs/template/user-template-pack .live-packs/{{ ansible_user_id }}-pack
+    - git clone --recursive git@gh.leapfrogonline.com:JFosco/emacs-live-jfosco-pack.git .live-packs/{{ ansible_user_id }}-pack
+    - echo "(live-add-packs '(~/.live-packs/jfosco-pack))" > .emacs-live.el
+  args:
+    chdir: $HOME
+    creates: .emacs-live.el
+  tags: emacs
