@@ -7,17 +7,17 @@ create ssh key using ssh-keygen
 Add ssh key to github
 
 
+- install manual depenedencies for pyenv and ansible listed in ~/sys/ansible/setup/setup.yml at top of file or on
+    https://github.com/pvenv/pyenv/wiki#suggested-build-environment
+- sudo dnf groupinstall 'C Development Tools and Libraries' - do not install with ansible
+    because at this time (02/2021) group installs done with ansible cannot be removed as a group
 - create ~/sys/ansible
-- clone ansible into ~/sys/ansible
-- clone personal laptop setup into ~/sys/ansible/setip
-- sudo dnf groupinstall 'C Development Tools and Libraries'
+- clone personal laptop setup into ~/sys/ansible/setup
 - install pyenv using pyenv installer -  https://github.com/pyenv/pyenv-installer
-- create python-version file in ~/sys/ansible (currently 3.6.1)
-- install manual depenedencies for pyenv and ansible listed in ~/sys/ansible/setup/setup.yml at top of file
-- pyenv install <above pytonn version>
+- create python-version file in ~/sys/ansible (currently 3.9.1)
+- pyenv install <python version for ansible>
 - create ansible virtual env. (in ~/sys/ansible python -m venv ./env)
-- follow instructions in ansible installation instructions to get ansible running from source
-- install ansible python requirements from ~/sys/ansible/ansible ../env/bin/pip install -r requirements.txt
+- install ansible in virtualenv using env/bin/pip install ansible
 
 
 Add apache to the joseph group - for allowing access to wordpress wp-config.php

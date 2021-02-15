@@ -4,42 +4,42 @@
   # but just in case...
   become: yes
   dnf:
-    name: "{{ item }}"
+    name:
+      - make
+      - gcc
+      - zlib-devel
+      - bzip2
+      - bzip2-devel
+      - readline-devel
+      - sqlite
+      - sqlite-devel
+      - openssl-devel
+      - tk-devel
+      - libffi-devel
     state: present
-  loop:
-    - zlib-devel
-    - bzip2
-    - bzip2-devel
-    - readline-devel
-    - sqlite
-    - sqlite-devel
-    - openssl-devel
-    - libffi-devel
 
 - name: install basic packages
   become: yes
   dnf:
-    name: "{{ item }}"
+    name:
+      - i3
+      - pavucontrol      # pulse audio sound control
+      - sway
+      - tmux
+      - patch
+      - libyaml-devel    # for compiling ruby versions
+      - gdbm-devel       # for compiling ruby versions
+      - htop
+      - zeal             # for offline programming doc viewing
     state: present
-  loop:
-    - i3
-    - pavucontrol      # pulse audio sound control
-    - sway
-    - tmux
-    - patch
-    - libyaml-devel    # for compiling ruby versions
-    - gdbm-devel       # for compiling ruby versions
-    - htop
-    - zeal             # for offline programming doc viewing
 
 - name: install utilities
   become: yes
   dnf:
-    name: "{{ item }}"
+    name:
+      - gparted
+      - strace
     state: present
-  loop:
-    - gparted
-    - strace
   tags:
     - utilities
 
@@ -68,12 +68,11 @@
 - name: install applications
   become: yes
   dnf:
-    name: "{{ item }}"
+    name:
+      - keepassxc
+      - mediawriter   # to create botable fedora usb drive
+      - vsftpd
     state: present
-  loop:
-    - keepassxc
-    - mediawriter   # to create botable fedora usb drive
-    - vsftpd
   tags:
     - apps
 

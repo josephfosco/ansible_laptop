@@ -1,29 +1,27 @@
 - name: install mariadb
   become: yes
   dnf:
-    name: "{{ item }}"
+    name:
+      - mariadb
+      - mariadb-server
     state: present
-  loop:
-    - mariadb
-    - mariadb-server
   tags:
     - wordpress
 
 - name: install php
   become: yes
   dnf:
-    name: "{{ item }}"
+    name:
+      - php
+      - php-common
+      - php-mysqlnd
+      - php-gd
+      - php-imap
+      - php-xml
+      - php-cli
+      - php-opcache
+      - php-mbstring
     state: present
-  loop:
-    - php
-    - php-common
-    - php-mysqlnd
-    - php-gd
-    - php-imap
-    - php-xml
-    - php-cli
-    - php-opcache
-    - php-mbstring
   tags:
     - wordpress
 
