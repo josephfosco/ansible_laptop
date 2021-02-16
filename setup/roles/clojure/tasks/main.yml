@@ -29,3 +29,8 @@
     state: absent
   tags:
     - clojure
+
+# NOTES
+#
+# Need to find a way to not always download and install cli tools install
+#

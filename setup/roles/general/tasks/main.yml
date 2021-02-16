@@ -99,9 +99,6 @@
 
 # NOTES
 #
-# Must add an environment variable in .bash_profile to use ansible_hosts file
-#  export ANSIBLE_CONFIG="~/sys/ansible/setup/ansible.cfg"
-#
 # Generate and add your ssh key to github before running
 #
 # For Chrome

@@ -11,13 +11,13 @@ Add ssh key to github
     https://github.com/pvenv/pyenv/wiki#suggested-build-environment
 - sudo dnf groupinstall 'C Development Tools and Libraries' - do not install with ansible
     because at this time (02/2021) group installs done with ansible cannot be removed as a group
-- create ~/sys/ansible
+- create ~/sys/
+- clone personal laptop setup into ~/sys/ansible
 - install pyenv using pyenv installer -  https://github.com/pyenv/pyenv-installer
 - create python-version file in ~/sys/ansible (currently 3.9.1)
 - pyenv install <python version for ansible>
 - create ansible virtual env. (in ~/sys/ansible python -m venv env)
 - install ansible in virtualenv using env/bin/pip install ansible
-- clone personal laptop setup into ~/sys/ansible/setup
 
 
 Add apache to the joseph group - for allowing access to wordpress wp-config.php
