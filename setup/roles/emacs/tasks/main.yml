@@ -6,10 +6,15 @@
   tags:
     - emacs
 
+- name: remove old .emacs.d
+  ansible.builtin.file:
+    path: .emacs.d
+    state: absent
+  tags: emacs
+
 - name: install emacs Live packs
   shell: "{{ item }}"
   with_items:
-    - rmdir .emacs.d
     - git clone https://github.com/josephfosco/emacs-live.git .emacs.d
     - make -C .emacs.d/packs/stable/org-pack/lib/org-mode autoloads
   args:
