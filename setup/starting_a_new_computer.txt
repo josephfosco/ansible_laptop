@@ -1,5 +1,7 @@
 Starting new
 
+- Set computer time zone in settings
+
 - Create ~/sys/commands subdirectory to place commands
 
 
@@ -7,17 +9,48 @@ create ssh key using ssh-keygen
 Add ssh key to github
 
 
-- install manual depenedencies for pyenv and ansible listed in ~/sys/ansible/setup/setup.yml at top of file or on
-    https://github.com/pvenv/pyenv/wiki#suggested-build-environment
 - sudo dnf groupinstall 'C Development Tools and Libraries' - do not install with ansible
     because at this time (02/2021) group installs done with ansible cannot be removed as a group
-- create ~/sys/
-- clone personal laptop setup into ~/sys/ansible
+- install manual depenedencies for pyenv and ansible listed in ~/sys/ansible/setup/setup.yml at top of file or on
+    https://github.com/pvenv/pyenv/wiki#suggested-build-environment
 - install pyenv using pyenv installer -  https://github.com/pyenv/pyenv-installer
-- create python-version file in ~/sys/ansible (currently 3.9.1)
+- create ~/sys
+- clone personal laptop setup into ~/sys/ansible (git clone https://github.com/josephfosco/ansible_laptop ./ansible)
+- you can remove the LICENSE file in the ~/sys/ansible/ directory
+- create python-version file in ~/sys/ansible (currently 3.9.2)
 - pyenv install <python version for ansible>
 - create ansible virtual env. (in ~/sys/ansible python -m venv env)
 - install ansible in virtualenv using env/bin/pip install ansible
+- run ansible setup (in ~/sys/setup ./run_setup.sh)
+
+- Create new terminal defaults
+- open a terminal
+  - right click in the terminal to show the menu
+  - select Preferences
+  - click the dropdown arrow in the current preference (Unnamed) and select Clone
+  - Change name to Green and click Clone
+  - Uncheck 'Use colors from system theme'
+  - Change Buily-in-schemes to 'Custom'
+  - under Colors Delault color Text #2ccf03 Background #000000
+  - Click on Bold Color and set text to #00ff00
+  - Under Palette change "Built-inschemes" to "Xterm"
+  - select "Show bold text in bright colors"
+  - under Scrolling increase scrollback to 10000
+  - under Command check "Run a custom command instead of my shell"
+  -   in Custom command: type tmux
+  - in the left side menu select General
+    - un select all check boxes (esp "Show menubar by default in new terminals")
+  - in the left sidebar click the dropdown arrow next to Green and click "Set as default"
+
+emacs
+-----
+
+If emacs crashes when it starts with the error "Cannot open load file" "No such file or directory" seq-25"
+  in emacs type M-x package-list-packages
+  find seq in the package list and click on it
+  In the right panel, If seq v 2.22xs or greater is not installed, click install
+goto ~/emacs.d/packs/stsble/org-pack/lib/org-mode/
+type make autoloads
 
 
 Add apache to the joseph group - for allowing access to wordpress wp-config.php ???? CHECK INTO THIS
