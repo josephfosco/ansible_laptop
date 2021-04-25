@@ -1,0 +1,24 @@
+# For some reason it seems installing the repo will crash
+# if run after the repo is installed
+# If this task needs to be rerun after the google-chrome
+# repo is installed, the 'install google-chrome repo'
+# step will need to be commented out
+
+- name: install google-chrome repo
+  become: yes
+  dnf:
+    name: 'https://google.com/chrome'
+    disable_gpg_check: yes
+    state: present
+  tags:
+    - google_chrome
+
+# install google-chrome
+- name: install google-chrome
+  become: yes
+  dnf:
+    name: google-chrome-stable
+    enablerepo: google-chrome
+    state: present
+  tags:
+    - google_chrome

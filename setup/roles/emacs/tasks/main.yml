@@ -22,14 +22,18 @@
     creates: .emacs.d/init.el
   tags: emacs
 
-- name: install emacs Live packs
+- name: .emacs-live.el - custom live packs to load
   shell: "{{ item }}"
   with_items:
-    # - mkdir --parents .live-packs/{{ ansible_user_id }}-pack
-    # - cp -R .emacs.d/packs/template/user-template-pack .live-packs/{{ ansible_user_id }}-pack
-    - git clone --recursive https://github.com/josephfosco/clj_init.el.git .live-packs/{{ ansible_user_id }}-pack
-    - echo "(live-add-packs '(~/.live-packs/jfosco-pack))" > .emacs-live.el
+    - echo "(live-add-packs '(~/.live-packs/{{ ansible_user_id }}-pack))" > .emacs-live.el
   args:
     chdir: $HOME
     creates: .emacs-live.el
+  tags: emacs
+
+- name: add .live-packs directory
+  ansible.builtin.file:
+    path: $HOME/.live-packs
+    state: directory
+    mode: '0775'
   tags: emacs

@@ -1,0 +1,37 @@
+# - need to add contents of files add_to_bashrc.sh to .bashrc
+# - need to clone .dotfiles
+
+# - name: run script to create links
+#   script:
+#     script: $HOME/.dotfiles/install.sh
+#     chdir: $HOME
+#     creates: $HOME/.live-packs/joseph-pack
+#   tags: dotfiles
+
+- name: link i3
+  ansible.builtin.file:
+    src: $HOME/.dotfiles/i3/config
+    dest: $HOME/.config/i3/config
+    state: link
+  tags: dotfiles
+
+- name: link sway
+  ansible.builtin.file:
+    src: $HOME/.dotfiles/sway/config
+    dest: $HOME/.config/sway/config
+    state: link
+  tags: dotfiles
+
+- name: link tmux
+  ansible.builtin.file:
+    src: $HOME/.dotfiles/tmux/.tmux.conf
+    dest: $HOME/.tmux.conf
+    state: link
+  tags: dotfiles
+
+- name: link joseph-pack
+  ansible.builtin.file:
+    src: $HOME/.dotfiles/joseph-pack
+    dest: $HOME/.live-packs/joseph-pack
+    state: link
+  tags: dotfiles

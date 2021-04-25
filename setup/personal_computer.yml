@@ -3,9 +3,11 @@
   connection: local
   roles:
     - general
+    - google_chrome
     - clojure
     - emacs
-    - raspberry_arduino
+    - external_microcontrollers
     - ruby
     - supercollider
     - wordpress
+    - dotfiles
