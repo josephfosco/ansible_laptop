@@ -6,7 +6,7 @@
     url: https://balena.io/etcher/static/etcher-rpm.repo
     dest: /etc/yum.repos.d/etcher-rpm.repo
   tags:
-    raspberrypi
+    external_microcontrollers
 
 - name: install etcher to burn RaspberryPi OS
   become: yes
@@ -14,7 +14,7 @@
     name: balena-etcher-electron
     state: latest
   tags:
-    raspberrypi
+    external_microcontrollers
 
 - name: Install arduino
   dnf:
@@ -22,7 +22,7 @@
     state: present
   become: yes
   tags:
-    arduino
+    external_microcontrollers
 
 # install screen for use with adafruit Circuit Python
 - name: Install screen
@@ -31,4 +31,14 @@
     name: screen
     state: present
   tags:
-    raspberrypi
+    external_microcontrollers
+
+# allow access to to the serial device
+- name: allow serial device access
+  become: yes
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    groups: dialout
+    append: yes
+  tags:
+    external_microcontrollers

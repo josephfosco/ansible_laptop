@@ -1,0 +1,2 @@
+- In the google_chrome role: It seems to install the google-chrome repo if the repo has not been installed.
+  If the repo has already been installed then the 'install google-chrome repo' step will crash.

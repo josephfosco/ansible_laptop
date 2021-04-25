@@ -61,15 +61,46 @@ goto ~/emacs.d/packs/stsble/org-pack/lib/org-mode/
 type make autoloads
 
 
-Add apache to the joseph group - for allowing access to wordpress wp-config.php
+Add apache to the joseph group - for allowing access to wordpress wp-config.php ???? CHECK INTO THIS
 
-Firefox add-ons
+Firefox
+-------
+Preferences - General
+  - check 'Restore previous session'
+Preferences - Home
+  - New Windows and Tabs
+      - Change 'Homepage and new windows' to 'Blank Page'
+      - Change 'New tabs' to 'Blank Page'
+  - Firefox Home content
+      - uncheck all
+  - Search Shortcuts
+      - In a new tab go to Startpage.com and click 'Add to Firefox' and add extension
+      - Uncheck everything EXCEPT:
+        - Bing
+        - DuckDuckGo
+        - Startpage Https
+        - Bookmarks
+        - Tabs
+        - History
+Preferences - Privacy & Security
+ - Send websites "Do Not Track..."
+   - Select "Always"
+ - Logins and Passwords
+   - uncheck all EXCEPT:
+     - "Show alerts about passwords for breached websites"
+ - Permissions
+   - Make certain no permissions are granted
+ - Firefox Data Collection and Use
+     - Uncheck all
+
+Extensions - (add-ons)
 ---------------------
+** Be sure to check "Allow extension to run in private Windows" when installing **
 u-block origin
 privacy badger
 remove cookies
-FireShot
+NoScript
 CanvasBlocker
 Decentraleyes
-Smart Referer
 Https Everywhere
+Smart Referer - ?? whitelist allows alot!
