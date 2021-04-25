@@ -5,10 +5,6 @@ Starting new
 - Create ~/sys/commands subdirectory to place commands
 
 
-create ssh key using ssh-keygen
-Add ssh key to github
-
-
 - sudo dnf groupinstall 'C Development Tools and Libraries' - do not install with ansible
     because at this time (02/2021) group installs done with ansible cannot be removed as a group
 - install manual depenedencies for pyenv and ansible listed in ~/sys/ansible/setup/setup.yml at top of file or on
@@ -22,6 +18,18 @@ Add ssh key to github
 - create ansible virtual env. (in ~/sys/ansible python -m venv env)
 - install ansible in virtualenv using env/bin/pip install ansible
 - run ansible setup (in ~/sys/setup ./run_setup.sh)
+
+git
+---
+
+- set user.name and email
+  - git config --global user.name "Joseph Fosco"
+  - git config --global user.email "joseph@josephfosco.com"
+- set rebase false for pulls
+  - git config --global pull.rebase false
+- create ssh key using ssh-keygen
+- Add ssh key to github
+
 
 - Create new terminal defaults
 - open a terminal
