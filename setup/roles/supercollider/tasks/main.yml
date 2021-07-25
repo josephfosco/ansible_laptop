@@ -15,6 +15,25 @@
   tags:
     - supercollider
 
+- name: add user to audio group
+  become: yes
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    groups: audio
+    append: yes
+  tags:
+    - supercollider
+
+- name: copy audio.conf
+  become: yes
+  copy:
+    src: audio.conf
+    dest: /etc/security/limits.d/audio.conf
+    mode: 0644
+    force: no
+  tags:
+    - supercollider
+
 # - name: Install pipeaudio-jack
 #   # (I think this is currently included with Fedora or might not be needed)
 #   dnf:

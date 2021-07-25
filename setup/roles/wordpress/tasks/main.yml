@@ -16,7 +16,6 @@
       - php-common
       - php-mysqlnd
       - php-gd
-      - php-imap
       - php-xml
       - php-cli
       - php-opcache
