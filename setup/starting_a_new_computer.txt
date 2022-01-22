@@ -83,6 +83,12 @@ Preferences - Home
         - Tabs
         - History
 Preferences - Privacy & Security
+ - Enhanced Tracking protection
+   - select Custom
+   - check cookies - Cross-site tracking cookies - includes social medial cookies
+   - check Tracking content - ina all windows (trying this setting to see if anythig breaks)
+   - check Cryptominers
+   - check Fingerprinters (uncheck if it causes problems)
  - Send websites "Do Not Track..."
    - Select "Always"
  - Logins and Passwords
@@ -90,8 +96,12 @@ Preferences - Privacy & Security
      - "Show alerts about passwords for breached websites"
  - Permissions
    - Make certain no permissions are granted
+   - Autoplay - change to Block audio and video (stops autoplay videos)
  - Firefox Data Collection and Use
      - Uncheck all
+:about.config
+  - set browse.fullscreen.autohide to false - so tabs/menu/etc... do not hide in fullscreen mode
+  - set privacy.resistFingerprinting to true - to reduce fingerprinting
 
 Extensions - (add-ons)
 ---------------------

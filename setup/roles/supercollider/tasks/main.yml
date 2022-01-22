@@ -15,6 +15,14 @@
   tags:
     - supercollider
 
+- name: Install jack_lsp command
+  dnf:
+    name: jack-audio-connection-kit-example-clients
+    state: present
+  become: yes
+  tags:
+    - supercollider
+
 - name: add user to audio group
   become: yes
   ansible.builtin.user:
