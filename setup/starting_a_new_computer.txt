@@ -11,6 +11,7 @@ Starting new
     https://github.com/pvenv/pyenv/wiki#suggested-build-environment
 - install pyenv using pyenv installer -  https://github.com/pyenv/pyenv-installer
 - create ~/sys
+- clone dotfiles into ~/.dotfiles (git clone https://github.com/josephfosco/.dotfiles ~/.dotfiles)
 - clone personal laptop setup into ~/sys/ansible (git clone https://github.com/josephfosco/ansible_laptop ./ansible)
 - you can remove the LICENSE file in the ~/sys/ansible/ directory
 - create python-version file in ~/sys/ansible (currently 3.9.2)
@@ -114,3 +115,4 @@ CanvasBlocker
 Decentraleyes
 Https Everywhere
 Smart Referer - ?? whitelist allows alot!
+OneTab
