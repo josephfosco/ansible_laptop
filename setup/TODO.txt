@@ -1,2 +1,7 @@
 - In the google_chrome role: It seems to install the google-chrome repo if the repo has not been installed.
   If the repo has already been installed then the 'install google-chrome repo' step will crash.
+
+- in roles/dotfiles/tasks/main.yml need to add contents of files add_to_bashrc.sh to .bashrc
+
+- Currently it seems there is an entry for /home/joseph/.composer/vendor/bin in the $PATH
+  where did this come from? Try to eliminate it.

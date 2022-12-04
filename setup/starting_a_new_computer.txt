@@ -39,7 +39,7 @@ git
   - click the dropdown arrow in the current preference (Unnamed) and select Clone
   - Change name to Green and click Clone
   - Uncheck 'Use colors from system theme'
-  - Change Buily-in-schemes to 'Custom'
+  - Change Built-in-schemes to 'Custom'
   - under Colors Delault color Text #2ccf03 Background #000000
   - Click on Bold Color and set text to #00ff00
   - Under Palette change "Built-inschemes" to "Xterm"
@@ -50,6 +50,7 @@ git
   - in the left side menu select General
     - un select all check boxes (esp "Show menubar by default in new terminals")
   - in the left sidebar click the dropdown arrow next to Green and click "Set as default"
+  - in Preferences-Text under "Sound", uncheck "Terminal bell"
 
 emacs
 -----
