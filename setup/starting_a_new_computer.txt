@@ -104,6 +104,7 @@ Preferences - Privacy & Security
 :about.config
   - set browse.fullscreen.autohide to false - so tabs/menu/etc... do not hide in fullscreen mode
   - set privacy.resistFingerprinting to true - to reduce fingerprinting
+  - set accessibility.typeaheadfind.enablesound to false - to turn off beep when search term not found
 
 Extensions - (add-ons)
 ---------------------
