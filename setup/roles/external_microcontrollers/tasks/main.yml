@@ -1,10 +1,24 @@
-# Raspberry Pi software
+# Install etcher to burn Raspberry Pi OS to sd card
 
-- name: add etcher repo
+- name: Fetch etcher repo installer script
+  ansible.builtin.uri:
+    url: https://dl.cloudsmith.io/public/balena/etcher/setup.rpm.sh
+    return_content: yes
+  register: etcher_repo_installer
+  tags:
+    external_microcontrollers
+
+# This step might fail with a non-zero return code but
+# it is actually ok. If the repo fie /etc/yum.repos.d/balena-etcher.repo
+# has bee created, it is ok.
+- name: Run etcher repo installer
   become: yes
-  get_url:
-    url: https://balena.io/etcher/static/etcher-rpm.repo
-    dest: /etc/yum.repos.d/etcher-rpm.repo
+  environment:
+    BASH: "/bin/bash"
+  ansible.builtin.shell:
+    cmd: sh -s --
+    stdin:  "{{ etcher_repo_installer.content }} -h"
+    creates: "/etc/yum.repos.d/balena-etcher.repo"
   tags:
     external_microcontrollers
 
@@ -13,14 +27,6 @@
   dnf:
     name: balena-etcher-electron
     state: latest
-  tags:
-    external_microcontrollers
-
-- name: Install arduino
-  dnf:
-    name: arduino
-    state: present
-  become: yes
   tags:
     external_microcontrollers
 
