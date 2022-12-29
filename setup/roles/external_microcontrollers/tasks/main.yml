@@ -14,23 +14,14 @@
 # This step might fail with a non-zero return code but
 # it is actually ok. If the repo file /etc/yum.repos.d/balena-etcher.repo
 # has bee created, it is ok.
-
-# The default value for stdin: is used in case the prior step is skipped.
-# In that case the variable etcher_repo_installer will include a stdout key
-# that contains info about skipping the step. There will be no content key.
-# Since running both this step and running the prior step depend on the
-# file not existing, if the prior step is skipped, the contents of the
-# variable will not matter. This should probably be switched to a handler
-# to avoid this issue.
-
 - name: Run etcher repo installer
   become: yes
   environment:
     BASH: "/bin/bash"
   ansible.builtin.shell:
     cmd: sh -s --
-    stdin:  "{{ etcher_repo_installer.content | default( etcher_repo_installer.stdout ) }}"
-    creates: "/etc/yum.repos.d/balena-etcher.repo"
+    stdin:  "{{ etcher_repo_installer.content }}"
+  when: etcher_repo_installer.content is defined
   tags:
     external_microcontrollers
 

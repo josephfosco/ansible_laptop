@@ -5,4 +5,4 @@
 
 # add -v to the end of this command to see output from every task that is run
 
-~/sys/ansible/env/bin/ansible-playbook playbook.yml -K $@
+~/sys/ansible/env/bin/ansible-playbook playbook.yml -K $@ -v

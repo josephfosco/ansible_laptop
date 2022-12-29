@@ -6,19 +6,28 @@
   tags:
     - clojure
 
+- name: check if clojure is installed
+  ansible.builtin.stat:
+    path: /usr/local/bin/clojure
+  register: clojure_installed
+  tags:
+    - clojure
+
 # Downloads clojure with cli tools, and the next task installs
 - name: download clojure cli tools install
   become: yes
-  get_url:
+  ansible.builtin.get_url:
     url: https://download.clojure.org/install/linux-install-1.10.1.763.sh
     dest: /tmp/linux-install-1.10.1.763.sh
     mode: 0755
+  when: clojure_installed.stat.exists == False
   tags:
     - clojure
 
 - name: execute clojure cli install
   become: yes
   shell: /tmp/linux-install-1.10.1.763.sh
+  when: clojure_installed.stat.exists == False
   tags:
     - clojure
 
