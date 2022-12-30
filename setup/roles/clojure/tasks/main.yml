@@ -46,3 +46,9 @@
     cmd: clojure -Ttools install com.github.seancorfield/clj-new '{:git/tag "v1.2.399"}' :as clj-new
   tags:
     - clojure
+
+# NOTES
+#
+# Is there a way to still download and install clojure when changing the version
+# or is there a way to always download the most current version of the installer
+#
