@@ -46,8 +46,3 @@
     cmd: clojure -Ttools install com.github.seancorfield/clj-new '{:git/tag "v1.2.399"}' :as clj-new
   tags:
     - clojure
-
-# NOTES
-#
-# Need to find a way to not always download and install cli tools install
-#
