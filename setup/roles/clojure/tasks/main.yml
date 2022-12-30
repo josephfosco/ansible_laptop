@@ -17,8 +17,8 @@
 - name: download clojure cli tools install
   become: yes
   ansible.builtin.get_url:
-    url: https://download.clojure.org/install/linux-install-1.10.1.763.sh
-    dest: /tmp/linux-install-1.10.1.763.sh
+    url: https://download.clojure.org/install/linux-install-1.11.1.1208.sh
+    dest: /tmp/linux-install-1.11.1.1208.sh
     mode: 0755
   when: clojure_installed.stat.exists == False
   tags:
@@ -26,7 +26,7 @@
 
 - name: execute clojure cli install
   become: yes
-  shell: /tmp/linux-install-1.10.1.763.sh
+  shell: /tmp/linux-install-1.11.1.1208.sh
   when: clojure_installed.stat.exists == False
   tags:
     - clojure
@@ -36,6 +36,14 @@
   file: path=/tmp/zsh-installer.sh
   args:
     state: absent
+  tags:
+    - clojure
+
+# Install clj-new as a tool
+- name:
+  become: yes
+  ansible.builtin.command:
+    cmd: clojure -Ttools install com.github.seancorfield/clj-new '{:git/tag "v1.2.399"}' :as clj-new
   tags:
     - clojure
 
