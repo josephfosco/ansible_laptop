@@ -49,5 +49,6 @@
 
 # NOTES
 #
-# Need to find a way to not always download and install cli tools install
+# Is there a way to still download and install clojure when changing the version
+# or is there a way to always download the most current version of the installer
 #
