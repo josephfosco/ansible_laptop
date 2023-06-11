@@ -1,0 +1,8 @@
+- name: install audacity
+  become: yes
+  dnf:
+    name:
+      - audacity
+    state: present
+  tags:
+    - audacity

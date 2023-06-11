@@ -17,6 +17,8 @@
       - tk-devel
       - libffi-devel
     state: present
+  tags:
+    - pyenv
 
 - name: install basic packages
   become: yes
@@ -32,6 +34,8 @@
       - htop
       - zeal             # for offline programming doc viewing
     state: present
+  tags:
+    - basic
 
 - name: install utilities
   become: yes
