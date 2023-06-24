@@ -1,4 +1,6 @@
-# no longer needed - supercollider is in the fedora repo
+## no longer needed for supercollider. sc is in the fedora repo
+## needed if you want jack-example-tools for jack_lsp command
+## to list audio outputs/inputs
 # - name: Install supercollider repo
 #   dnf:
 #     name: http://ccrma.stanford.edu/planetccrma/mirror/fedora/linux/planetccrma/{{ hostvars[inventory_hostname].ansible_distribution_major_version }}/x86_64/planetccrma-repo-1.1-3.fc{{ hostvars[inventory_hostname].ansible_distribution_major_version }}.ccrma.noarch.rpm
@@ -11,14 +13,6 @@
 - name: Install supercollider
   dnf:
     name: supercollider
-    state: present
-  become: yes
-  tags:
-    - supercollider
-
-- name: Install jack_lsp command
-  dnf:
-    name: jack-audio-connection-kit-example-clients
     state: present
   become: yes
   tags:
@@ -44,7 +38,7 @@
     - supercollider
 
 # - name: Install pipeaudio-jack
-#   # (I think this is currently included with Fedora or might not be needed)
+#   # (I think this is currently included with Fedora or is not needed)
 #   dnf:
 #     name: pipewire-plugin-jack
 #     state: present
