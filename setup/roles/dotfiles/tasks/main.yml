@@ -8,10 +8,20 @@
 #     creates: $HOME/.live-packs/joseph-pack
 #   tags: dotfiles
 
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - "{{ ansible_env.HOME }}/.config/i3"
+    - "{{ ansible_env.HOME }}/.config/sway"
+    - "{{ ansible_env.HOME }}/.live-packs"
+
+
 - name: link i3
   ansible.builtin.file:
-    src: $HOME/.dotfiles/i3/config
-    dest: $HOME/.config/i3/config
+    src: "{{ ansible_env.HOME }}/.dotfiles/i3/config"
+    dest: "{{ ansible_env.HOME }}/.config/i3/config"
     state: link
   tags: dotfiles
 

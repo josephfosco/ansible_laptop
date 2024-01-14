@@ -37,20 +37,23 @@ git
   - right click in the terminal to show the menu
   - select Preferences
   - click the dropdown arrow in the current preference (Unnamed) and select Clone
-  - Change name to Green and click Clone
-  - Uncheck 'Use colors from system theme'
-  - Change Built-in-schemes to 'Custom'
-  - under Colors Delault color Text #2ccf03 Background #000000
-  - Click on Bold Color and set text to #00ff00
-  - Under Palette change "Built-inschemes" to "Xterm"
-  - select "Show bold text in bright colors"
-  - under Scrolling increase scrollback to 10000
-  - under Command check "Run a custom command instead of my shell"
-  -   in Custom command: type tmux
+  - In Colors tab
+    - Change name to Green and click Clone
+    - Uncheck 'Use colors from system theme'
+    - Change Built-in-schemes to 'Custom'
+    - under Colors Delault color Text #2ccf03 Background #000000
+    - Click on Bold Color and set text to #00ff00
+    - Under Palette change "Built-inschemes" to "Xterm"
+    - select "Show bold text in bright colors"
+  - In Scrolling tab
+    - increase scrollback to 10000
+    - under Command check "Run a custom command instead of my shell"
+      - in Custom command: type tmux
   - in the left side menu select General
     - un select all check boxes (esp "Show menubar by default in new terminals")
   - in the left sidebar click the dropdown arrow next to Green and click "Set as default"
-  - in Preferences-Text under "Sound", uncheck "Terminal bell"
+  - in the Text tab
+    - under "Sound", uncheck "Terminal bell"
 
 emacs
 -----
@@ -61,6 +64,15 @@ If emacs crashes when it starts with the error "Cannot open load file" "No such 
   In the right panel, If seq v 2.22xs or greater is not installed, click install
 goto ~/emacs.d/packs/stsble/org-pack/lib/org-mode/
 type make autoloads
+Add the following lines to .baashrc
+
+#load dotfiles
+for DOTFILE in `find ~/.dotfiles/bashrc`
+do
+    [ -f "$DOTFILE" ] && source "$DOTFILE"
+done
+
+
 
 
 Add apache to the joseph group - for allowing access to wordpress wp-config.php ???? CHECK INTO THIS
@@ -68,7 +80,7 @@ Add apache to the joseph group - for allowing access to wordpress wp-config.php 
 Firefox
 -------
 Preferences - General
-  - check 'Restore previous session'
+  - check 'Open previous windows and tabs'
 Preferences - Home
   - New Windows and Tabs
       - Change 'Homepage and new windows' to 'Blank Page'
@@ -80,7 +92,7 @@ Preferences - Home
       - Uncheck everything EXCEPT:
         - Bing
         - DuckDuckGo
-        - Startpage Https
+        - Startpage
         - Bookmarks
         - Tabs
         - History
@@ -91,8 +103,7 @@ Preferences - Privacy & Security
    - check Tracking content - ina all windows (trying this setting to see if anythig breaks)
    - check Cryptominers
    - check Fingerprinters (uncheck if it causes problems)
- - Send websites "Do Not Track..."
-   - Select "Always"
+ - Send websites a "Do Not Track" request
  - Logins and Passwords
    - uncheck all EXCEPT:
      - "Show alerts about passwords for breached websites"
@@ -105,6 +116,9 @@ Preferences - Privacy & Security
   - set browse.fullscreen.autohide to false - so tabs/menu/etc... do not hide in fullscreen mode
   - set privacy.resistFingerprinting to true - to reduce fingerprinting
   - set accessibility.typeaheadfind.enablesound to false - to turn off beep when search term not found
+To display menu bar at top
+  - Right-click an empty area of the Tab bar at the top of the Firefox window and click 'Menu Bar'.
+
 
 Extensions - (add-ons)
 ---------------------

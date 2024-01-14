@@ -1,0 +1,14 @@
+---
+- hosts: personal_computer
+  connection: local
+  roles:
+    - general
+    - google_chrome
+    - clojure
+    - emacs
+    - external_microcontrollers
+    - ruby
+    - supercollider
+    - wordpress
+    - dotfiles
+    - audio
