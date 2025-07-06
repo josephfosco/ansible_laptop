@@ -3,7 +3,7 @@
 
 # load dotfiles
 
-for DOTFILE in `find ~/.dotfiles/bash`
+for DOTFILE in `find ~/.dotfiles/bashrc`
 do
   [ -f "$DOTFILE" ] && source "$DOTFILE"
 done

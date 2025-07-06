@@ -5,3 +5,13 @@
 
 - Currently it seems there is an entry for /home/joseph/.composer/vendor/bin in the $PATH
   where did this come from? Try to eliminate it.
+
+- Add the following lines to .bashrc
+
+#load dotfiles
+for DOTFILE in `find ~/.dotfiles/bashrc`
+do
+    [ -f "$DOTFILE" ] && source "$DOTFILE"
+done
+
+These lines load the .dotfiles/bashrc aliases, commands, and functions when the shell starts
