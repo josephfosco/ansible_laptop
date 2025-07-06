@@ -11,6 +11,22 @@ Starting new
     https://github.com/pvenv/pyenv/wiki#suggested-build-environment
 - install pyenv using pyenv installer -  https://github.com/pyenv/pyenv-installer
 - create ~/sys
+
+git
+---
+
+- set user.name and email
+  - cd to home directory
+  - git config --global user.name "Joseph Fosco"
+  - git config --global user.email "joseph@josephfosco.com"
+- set rebase false for pulls
+  - git config --global pull.rebase false
+- create ssh key using ssh-keygen
+- Add ssh key to github
+
+setup and run ansible
+---------------------
+
 - clone dotfiles into ~/.dotfiles (git clone https://github.com/josephfosco/.dotfiles ~/.dotfiles)
 - clone personal laptop setup into ~/sys/ansible (git clone https://github.com/josephfosco/ansible_laptop ./ansible)
 - you can remove the LICENSE file in the ~/sys/ansible/ directory
@@ -19,17 +35,6 @@ Starting new
 - create ansible virtual env. (in ~/sys/ansible python -m venv env)
 - install ansible in virtualenv using env/bin/pip install ansible
 - run ansible setup (in ~/sys/setup ./run_setup.sh)
-
-git
----
-
-- set user.name and email
-  - git config --global user.name "Joseph Fosco"
-  - git config --global user.email "joseph@josephfosco.com"
-- set rebase false for pulls
-  - git config --global pull.rebase false
-- create ssh key using ssh-keygen
-- Add ssh key to github
 
 
 - Create new terminal defaults

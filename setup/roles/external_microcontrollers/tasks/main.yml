@@ -33,6 +33,15 @@
   tags:
     external_microcontrollers
 
+# install raspberry pi installer to burn new os image
+- name: Install raspberry pi imager
+  become: yes
+  dnf:
+    name: rpi-imager
+    state: present
+  tags:
+    external_microcontrollers
+
 # install screen for use with adafruit Circuit Python
 - name: Install screen
   become: yes
