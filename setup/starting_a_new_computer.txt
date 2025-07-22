@@ -30,10 +30,13 @@ setup and run ansible
 - clone dotfiles into ~/.dotfiles (git clone https://github.com/josephfosco/.dotfiles ~/.dotfiles)
 - clone personal laptop setup into ~/sys/ansible (git clone https://github.com/josephfosco/ansible_laptop ./ansible)
 - you can remove the LICENSE file in the ~/sys/ansible/ directory
-- create python-version file in ~/sys/ansible (currently 3.9.2)
-- pyenv install <python version for ansible>
-- create ansible virtual env. (in ~/sys/ansible python -m venv env)
-- install ansible in virtualenv using env/bin/pip install ansible
+- Install ansible
+  - run sudo dnf install ansible (** preferred **)
+    -- OR --
+  - create python-version file in ~/sys/ansible (currently 3.9.2)
+  - pyenv install <python version for ansible>
+  - create ansible virtual env. (in ~/sys/ansible python -m venv env)
+  - install ansible in virtualenv using env/bin/pip install ansible
 - run ansible setup (in ~/sys/setup ./run_setup.sh)
 
 
