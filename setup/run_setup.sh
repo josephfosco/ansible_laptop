@@ -6,4 +6,4 @@
 # -v at the end of this command prints output from every task that is run
 # -v can be removed if the additional information is not needed
 
-~/sys/ansible/env/bin/ansible-playbook playbook.yml -K $@ -v
+ansible-playbook -i inventory playbook.yml -K "$@" -v
