@@ -1,0 +1,25 @@
+---
+- name: Fedora upgrade
+  dnf:
+    name: dnf-plugin-system-upgrade
+    state: present
+  become: yes
+  tags:
+    - fedora-upgrade
+
+- name: Fedora rpmconf tool
+  dnf:
+    name: rpmconf
+    state: present
+  become: yes
+  tags:
+    - fedora-upgrade
+
+- name: install remove-retired-packages
+  # to allow cut/paste in emacs from system clipboard
+  become: yes
+  dnf:
+    name: remove-retired-packages
+    state: present
+  tags:
+    - fedora-upgrade

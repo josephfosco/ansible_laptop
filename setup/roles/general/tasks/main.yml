@@ -47,22 +47,6 @@
   tags:
     - utilities
 
-- name: Fedora upgrade
-  dnf:
-    name: dnf-plugin-system-upgrade
-    state: present
-  become: yes
-  tags:
-    - fedora-upgrade
-
-- name: Fedora rpmconf tool
-  dnf:
-    name: rpmconf
-    state: present
-  become: yes
-  tags:
-    - fedora-util
-
 - name: install xsel
   # to allow cut/paste in emacs from system clipboard
   become: yes
